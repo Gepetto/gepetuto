@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "gepetuto"
+version = "0.1.0"
+description = "Tutorial edition framework"
+authors = ["Guilhem Saurel <guilhem.saurel@laas.fr>"]
+license = "BSD-2-Clause"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+jupyterlab = "^4.0.3"
+black = {extras = ["jupyter"], version = "^23.7.0"}
+ruff = "^0.0.278"
+isort = "^5.12.0"
+pre-commit = "^3.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -4,6 +4,13 @@
 
 This project contains some tools to help authoring and maintaing python tutorials presented on notebooks.
 
+## Install
+
+Until this package is not yet released, here is the recommended installation procedure:
+```
+pipx install git+https://github.com/gepetto/gepetuto
+```
+
 ## Usage
 
 1. create a (eg. `tp1`) directory (`tp0` can be used to check prerequisites)

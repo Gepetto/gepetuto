@@ -3,12 +3,13 @@
 import json
 import logging
 from pathlib import Path
+from typing import Optional
 
 LOG = logging.getLogger("gepetuto.generate")
 HASHTAGS = ["jupyter_snippet"]
 
 
-def generate(tp_id: int | None, **kwargs):
+def generate(tp_id: Optional[int], **kwargs):
     """Parse python scripts to generate snippets."""
     LOG.info("generating snippets from tutorial sources.")
     if tp_id is not None:

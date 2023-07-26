@@ -47,7 +47,7 @@ def parse_args() -> argparse.Namespace:
         level = 30 - 10 * args.verbose
     logging.basicConfig(level=level)
 
-    LOG.debug("parsed arguments :%s", args)
+    LOG.debug("parsed arguments: %s", args)
 
     return args
 

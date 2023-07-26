@@ -6,8 +6,6 @@ This can be started with `python -m gepetuto`, or simply `gepetuto`.
 import argparse
 import logging
 import os
-import pathlib
-import sys
 
 from .generate import generate
 from .lint import lint
@@ -18,16 +16,7 @@ LOG = logging.getLogger("gepetuto")
 
 def parse_args() -> argparse.Namespace:
     """Check what the user want."""
-    # Get current interpreter
-    python = pathlib.Path(sys.executable)
-    if str(python.parent) in os.environ.get("PATH", "").split(os.pathsep):
-        # its path is in PATH: no need for absolute path
-        python = pathlib.Path(python.name)
-
-    parser = argparse.ArgumentParser(
-        prog=f"{python} -m gepetuto",
-        description="gepetuto tools",
-    )
+    parser = argparse.ArgumentParser(prog="gepetuto", description="gepetuto tools")
     parser.add_argument(
         "-v",
         "--verbose",
@@ -35,8 +24,20 @@ def parse_args() -> argparse.Namespace:
         default=0,
         help="increment verbosity level",
     )
-
-    parser.add_argument("action", choices=["lint", "test", "generate"], nargs="?")
+    parser.add_argument(
+        "-a",
+        "--action",
+        default="generate",
+        choices=["lint", "test", "generate", "all"],
+        nargs="?",
+        help="choose what to do. Default to 'generate'.",
+    )
+    parser.add_argument(
+        "tp_id",
+        type=int,
+        nargs="*",
+        help="choose which tp to process. Default to all.",
+    )
 
     args = parser.parse_args()
 
@@ -60,7 +61,7 @@ def main():
         lint(**vars(args))
     elif args.action == "test":
         test(**vars(args))
-    else:
+    elif args.action == "all":
         LOG.debug("no action specified, running all 3.")
         lint(**vars(args))
         test(**vars(args))

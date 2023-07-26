@@ -3,22 +3,26 @@
 import json
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import List
 
 LOG = logging.getLogger("gepetuto.generate")
 HASHTAGS = ["jupyter_snippet"]
 
 
-def generate(tp_id: Optional[int], **kwargs):
+def generate(tp_id: List[int], **kwargs):
     """Parse python scripts to generate snippets."""
     LOG.info("generating snippets from tutorial sources.")
-    if tp_id is not None:
-        generate_from_id(tp_id)
+    if tp_id:
+        for n in tp_id:
+            generate_from_id(n)
     else:
         for tp_number in range(100):
+            LOG.debug(f"Looking for tp {tp_number}")
             try:
                 generate_from_id(tp_number)
             except StopIteration:
+                if tp_number == 0:
+                    continue
                 break
 
 
@@ -31,14 +35,14 @@ def generate_from_id(tp_id: int):
 
 def generate_ipynb(ipynb, folder):  # noqa: C901
     """Cut python files in bits loadable by ipython."""
-    LOG.info(f"processing {ipynb} with scripts in {folder}")
+    LOG.info(f"processing '{ipynb}' with scripts in '{folder}'")
     with ipynb.open() as f:
         data = json.load(f)
     cells_copy = data["cells"].copy()
     generated = folder / "generated"
     generated.mkdir(exist_ok=True)
     for filename in folder.glob("*.py"):
-        LOG.info(f" processing {filename}")
+        LOG.info(f" processing '{filename}'")
         content = []
         dest = None
         with filename.open() as f_in:
@@ -46,8 +50,7 @@ def generate_ipynb(ipynb, folder):  # noqa: C901
                 if any(f"# %{hashtag}" in line for hashtag in HASHTAGS):
                     if dest is not None:
                         msg = (
-                            f"%{HASHTAGS[0]} block open twice "
-                            f"at line {line_number + 1}"
+                            f"%{HASHTAGS[0]} block open twice at line {line_number + 1}"
                         )
                         raise SyntaxError(msg)
                     dest = generated / f"{filename.stem}_{line.split()[2]}"

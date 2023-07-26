@@ -6,9 +6,9 @@ This project contains some tools to help authoring and maintaing python tutorial
 
 ## Install
 
-Until this package is not yet released, here is the recommended installation procedure:
+Until the first release of this package, here is the recommended installation procedure:
 ```
-pipx install git+https://github.com/gepetto/gepetuto
+pipx install -e .
 ```
 
 ## Usage
@@ -16,13 +16,13 @@ pipx install git+https://github.com/gepetto/gepetuto
 1. create a (eg. `tp1`) directory (`tp0` can be used to check prerequisites)
 2. write python scripts (eg. `cholesky.py`) in this directory
 3. delimit snippets inside those scripts between `# %jupyter_snippet some_name` and `# %end_jupyter_snippet`
-4. run `gepetuto generate`: this will create a `tp{i}/generated` directory with eg. `cholesky_some_name` snippet
+4. run `gepetuto -a generate`: this will create a `tp{i}/generated` directory with eg. `cholesky_some_name` snippet
 5. create a (eg. `1_factorisation.ipynb`) notebook, containing `import gepetuto.magic`
 6. cells can contain either eg. `%load tp1/generated/choleskey_some_name` to display some code to the student, or their
    `%do_not_load` version to let the student write the code themself
-7. run `gepetuto test` to check all python scripts in tp directories
-8. run `gepetuto lint` to ensure the coding standards are respected in all python scripts in tp directories
-9. add `gepetuto test` in your CI, and `gepetuto lint` + `gepetuto generate` in your pre-commit
+7. run `gepetuto -a test` to check all python scripts in tp directories
+8. run `gepetuto -a lint` to ensure the coding standards are respected in all python scripts in tp directories
+9. add `gepetuto -a test` in your CI, and `gepetuto -a lint` + `gepetuto -a generate` in your pre-commit
 
 ## Examples
 

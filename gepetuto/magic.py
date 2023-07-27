@@ -1,9 +1,6 @@
-from IPython.core import magic_arguments
 from IPython.core.magic import (
-    line_magic,
-    cell_magic,
-    line_cell_magic,
     Magics,
+    line_magic,
     magics_class,
 )
 
@@ -38,5 +35,5 @@ def forceLoad(force=True):
 print(
     """NB: as for all the tutorials, a magic command %do_not_load is introduced """
     """to hide the solutions to some questions. Change it for %load if you want to see """
-    """(and execute) the solution."""
+    """(and execute) the solution.""",
 )

@@ -1,7 +1,6 @@
 """Add "test" action for the "gepetuto" program."""
 
 import logging
-import os
 from pathlib import Path
 from subprocess import check_call
 

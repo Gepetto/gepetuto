@@ -1,6 +1,6 @@
 """Little example program."""
 
-# %jupyter_snippet example
+# %jupyter_snippet example_snippet
 import pinocchio as pin
 
 oma = pin.SE3.Random()

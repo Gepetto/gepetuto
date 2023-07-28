@@ -16,6 +16,7 @@ def test(**kwargs):
         folder = Path(f"tp{tp_number}")
         if folder.exists():
             for python_file in folder.glob("*.py"):
+                LOG.debug(f"Checking {python_file}")
                 check_call([sys.executable, python_file])
         else:
             if tp_number == 0:

@@ -38,6 +38,9 @@ def generate_ipynb(ipynb, folder):  # noqa: C901
     LOG.info(f"processing '{ipynb}' with scripts in '{folder}'")
     with ipynb.open() as f:
         data = json.load(f)
+    for cell in data["cells"]:
+        if "outputs" in cell:
+            cell["outputs"] = []
     cells_copy = data["cells"].copy()
     generated = folder / "generated"
     generated.mkdir(exist_ok=True)

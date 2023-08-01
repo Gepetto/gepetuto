@@ -12,18 +12,9 @@ HASHTAGS = ["jupyter_snippet"]
 def generate(tp_id: List[int], **kwargs):
     """Parse python scripts to generate snippets."""
     LOG.info("generating snippets from tutorial sources.")
-    if tp_id:
-        for n in tp_id:
-            generate_from_id(n)
-    else:
-        for tp_number in range(100):
-            LOG.debug(f"Looking for tp {tp_number}")
-            try:
-                generate_from_id(tp_number)
-            except StopIteration:
-                if tp_number == 0:
-                    continue
-                break
+    for n in tp_id:
+        LOG.debug(f"Looking for tp {n}")
+        generate_from_id(n)
 
 
 def generate_from_id(tp_id: int):

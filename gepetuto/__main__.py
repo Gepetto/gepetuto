@@ -6,6 +6,7 @@ This can be started with `python -m gepetuto`, or simply `gepetuto`.
 import argparse
 import logging
 import os
+from pathlib import Path
 
 from .generate import generate
 from .lint import lint
@@ -34,6 +35,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "tp_id",
+        default=get_tp_id(),
         type=int,
         nargs="*",
         help="choose which tp to process. Default to all.",
@@ -50,6 +52,19 @@ def parse_args() -> argparse.Namespace:
     LOG.debug("parsed arguments: %s", args)
 
     return args
+
+
+def get_tp_id():
+    """Find tp to process."""
+    tp_id = []
+    current_tp_id = 0
+    while True:
+        folder = Path(f"tp{current_tp_id}")
+        if folder.exists():
+            tp_id.append(current_tp_id)
+        elif current_tp_id != 0:
+            return tp_id
+        current_tp_id += 1
 
 
 def main():

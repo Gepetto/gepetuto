@@ -4,22 +4,18 @@ import logging
 import sys
 from pathlib import Path
 from subprocess import check_call
+from typing import List
 
 LOG = logging.getLogger("gepetuto.test")
 
 
-def test(**kwargs):
+def test(tp_id: List[int], **kwargs):
     """Test python scripts."""
     LOG.info("testing tutorial sources.")
-    for tp_number in range(100):
-        LOG.debug(f"Looking for tp {tp_number}")
-        folder = Path(f"tp{tp_number}")
-        if folder.exists():
-            for python_file in folder.glob("*.py"):
-                LOG.debug(f"Checking {python_file}")
-                check_call([sys.executable, python_file])
-        else:
-            if tp_number == 0:
-                continue
-            break
+    for n in tp_id:
+        LOG.debug(f"Looking for tp {n}")
+        folder = Path(f"tp{n}")
+        for python_file in folder.glob("*.py"):
+            LOG.debug(f"Checking {python_file}")
+            check_call([sys.executable, python_file])
     LOG.info("test passed.")

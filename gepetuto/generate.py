@@ -44,6 +44,8 @@ def generate_ipynb(ipynb, folder):  # noqa: C901
     cells_copy = data["cells"].copy()
     generated = folder / "generated"
     generated.mkdir(exist_ok=True)
+    for generated_file in generated.glob("*"):
+        Path.unlink(generated_file)
     for filename in folder.glob("*.py"):
         LOG.info(f" processing '{filename}'")
         content = []

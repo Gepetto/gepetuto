@@ -22,7 +22,6 @@ def lint_tp_folder(tp_number):
     LOG.debug(f"Looking for tp {tp_number}")
     folder = Path(f"tp{tp_number}")
     for python_file in folder.glob("*.py"):
-        print(python_file)
         LOG.debug(f"Checking {python_file}")
         check_call(["isort", python_file])
         check_call(["black", python_file])

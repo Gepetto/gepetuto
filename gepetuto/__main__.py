@@ -6,7 +6,9 @@ This can be started with `python -m gepetuto`, or simply `gepetuto`.
 import argparse
 import logging
 import os
+import sys
 from pathlib import Path
+from subprocess import check_call
 
 from .generate import generate
 from .lint import lint
@@ -40,6 +42,12 @@ def parse_args() -> argparse.Namespace:
         nargs="*",
         help="choose which tp to process. Default to all.",
     )
+    parser.add_argument(
+        "-p",
+        "--python",
+        default=retrieve_python_interpreter(),
+        help="choose python interpreter to use.",
+    )
 
     args = parser.parse_args()
 
@@ -65,6 +73,23 @@ def get_tp_id():
         elif current_tp_id != 0:
             return tp_id
         current_tp_id += 1
+
+
+def retrieve_python_interpreter():
+    """Retrieve installed python interpreter."""
+    try:
+        check_call(["python3", "--version"])
+        return "python3"
+    except FileNotFoundError:
+        try:
+            check_call(["python", "--version"])
+            return "python"
+        except FileNotFoundError:
+            LOG.warn(
+                "Didn't found 'python3' or 'python' executable, using ",
+                sys.executable,
+            )
+            return sys.executable
 
 
 def main():

@@ -45,8 +45,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-p",
         "--python",
-        default=retrieve_python_version(),
-        help="choose python version to use.",
+        default=retrieve_python_interpreter(),
+        help="choose python interpreter to use.",
     )
 
     args = parser.parse_args()
@@ -75,8 +75,8 @@ def get_tp_id():
         current_tp_id += 1
 
 
-def retrieve_python_version():
-    """Retrieve installed python version."""
+def retrieve_python_interpreter():
+    """Retrieve installed python interpreter."""
     try:
         check_call(["python3", "--version"])
         return "python3"
@@ -86,7 +86,8 @@ def retrieve_python_version():
             return "python"
         except FileNotFoundError:
             LOG.warn(
-                "Didn't found 'python3' or 'python' executable, using ", sys.executable
+                "Didn't found 'python3' or 'python' executable, using ",
+                sys.executable,
             )
             return sys.executable
 

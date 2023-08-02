@@ -85,7 +85,9 @@ def retrieve_python_version():
             check_call(["python", "--version"])
             return "python"
         except FileNotFoundError:
-            LOG.warn("Didn't found 'python3' or 'python' executable, using ", sys.executable)
+            LOG.warn(
+                "Didn't found 'python3' or 'python' executable, using ", sys.executable
+            )
             return sys.executable
 
 

@@ -27,5 +27,7 @@ jobs:
       run: pipx install black
     - name: Install ruff
       run: pipx install ruff
+    - name: Install nbconvert
+      run: pip install nbconvert
     - name: check with gepetuto
       run: cd tests && gepetuto -vva all

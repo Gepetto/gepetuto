@@ -1,9 +1,10 @@
 """Little example program."""
 
-# %jupyter_snippet example_snippet
-import pinocchio as pin
 
-oma = pin.SE3.Random()
-omb = pin.SE3.Random()
-amb = oma.inverse() * omb
+# %jupyter_snippet example_snippet
+def hypotenuse(a, b):
+    """Return hypotenuse of triangle."""
+    return (a**2 + b**2) ** 0.5
+
+
 # %end_jupyter_snippet

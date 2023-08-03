@@ -19,14 +19,11 @@ readme = "README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-black = {extras = ["jupyter"], optional = true, version = "^23.7.0"}
-isort = {optional = true, version = "^5.12.0"}
+black = {extras = ["jupyter"], version = "^23.7.0"}
+isort = "^5.12.0"
 jupyterlab = "^4.0.3"
 python = "^3.8"
-ruff = {optional = true, version = "^0.0.280"}
-
-[tool.poetry.extras]
-lint = ["black", "isort", "ruff"]
+ruff = "^0.0.280"
 
 [tool.poetry.scripts]
 gepetuto = "gepetuto.__main__:main"

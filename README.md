@@ -24,6 +24,11 @@ pipx install -e .
 8. run `gepetuto -a lint` to ensure the coding standards are respected in all python scripts in tp directories
 9. add `gepetuto -a test` in your CI, and `gepetuto -a lint` + `gepetuto -a generate` in your pre-commit
 
+## CI Example
+
+example of CI using all gepetuto actions on tests folder here :
+- https://github.com/Gepetto/gepetuto/blob/main/.github/workflows/python-app.yml
+
 ## Examples
 
 - https://github.com/gepetto/supaero2023

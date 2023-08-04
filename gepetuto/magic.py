@@ -12,6 +12,7 @@ class DoNotLoadMagics(Magics):
     def do_not_load_snippet(self, line):
         """Magic command to hide the snippet and let the student code by themself."""
         if DoNotLoadMagics.force_load:
+            get_ipython().run_line_magic("run", "-i " + line)
             get_ipython().run_line_magic("load", line)  # noqa: F821
 
     @line_magic

@@ -3,27 +3,28 @@
 import logging
 from pathlib import Path
 from subprocess import check_call
-from typing import List
 
 LOG = logging.getLogger("gepetuto.test")
 
 
-def test(tp_id: List[int], **kwargs):
+def test(files, **kwargs):
     """Test python scripts."""
     python_interpreter = kwargs["python"]
     LOG.info("testing tutorial sources.")
-    for n in tp_id:
-        LOG.debug(f"Looking for tp {n}")
-        folder = Path(f"tp{n}")
-        for python_file in folder.glob("*.py"):
-            LOG.debug(f"Checking {python_file}")
-            check_call([python_interpreter, python_file])
-            check_ipynb(n, python_interpreter)
+    tp_id = int(str(files[0])[2])  # get the tp id of the first file
+    check_ipynb(tp_id, python_interpreter)
+    for f in files:
+        LOG.debug(f"Checking {f}")
+        check_call([python_interpreter, f])
+        current_tp_id = int(str(f)[2])
+        if tp_id != current_tp_id:
+            tp_id = current_tp_id
+            check_ipynb(current_tp_id, python_interpreter)
     LOG.info("test passed.")
 
 
 def check_ipynb(tp_number, python_interpreter):
-    """Check .ipynb files from given tp_number and move it in temporary folder."""
+    """Check .ipynb files from given tp_number."""
     ipynb = next(Path().glob(f"{tp_number}_*.ipynb"))
     check_call(["jupyter", "nbconvert", "--to", "script", f"{ipynb}"])
     converted_ipynb = next(Path().glob(f"{tp_number}_*.py"))

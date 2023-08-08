@@ -27,7 +27,7 @@ pipx install -e .
 ## CI Example
 
 example of CI using all gepetuto actions on tests folder here :
-- https://github.com/Gepetto/gepetuto/blob/main/.github/workflows/python-app.yml
+- https://github.com/Gepetto/gepetuto/blob/main/.github/workflows/tests.yml
 
 ## Examples
 

@@ -12,8 +12,8 @@ class DoNotLoadMagics(Magics):
     def do_not_load_snippet(self, line):
         """Magic command to hide the snippet and let the student code by themself."""
         if DoNotLoadMagics.force_load:
-            get_ipython().run_line_magic("run", "-i " + line)
-            get_ipython().run_line_magic("load", line)  # noqa: F821
+            self.run("run", "-i " + line)
+            self.run("load", line)
 
     @line_magic
     def force_load(self, line):
@@ -28,8 +28,12 @@ class DoNotLoadMagics(Magics):
     @line_magic
     def load_snippet(self, line):
         """Magic command to load and run the snippet, this only work on JupyterLab."""
-        get_ipython().run_line_magic("run", "-i " + line)
-        get_ipython().run_line_magic("load", line)
+        self.run("run", "-i " + line)
+        self.run("load", line)
+
+    def run(self, magic, line):
+        """Run magic command."""
+        get_ipython().run_line_magic(magic, line)  # noqa: F821
 
 
 ip = get_ipython()  # noqa: F821

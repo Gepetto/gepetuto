@@ -10,12 +10,12 @@ def lint(files, **kwargs):
     """Lint python scripts."""
     LOG.info("linting tutorial sources.")
     for f in files:
-        lint_folder(f)
+        lint_file(f)
     LOG.info("lint done.")
 
 
-def lint_folder(file):
-    """Lint python scripts in folder."""
+def lint_file(file):
+    """Lint python script."""
     LOG.debug(f"Checking {file}")
     check_call(["isort", file])
     check_call(["black", file])

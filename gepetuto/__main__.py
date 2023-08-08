@@ -17,7 +17,7 @@ from .test import test
 LOG = logging.getLogger("gepetuto")
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(args=None) -> argparse.Namespace:
     """Check what the user want."""
     parser = argparse.ArgumentParser(prog="gepetuto", description="gepetuto tools")
     parser.add_argument(
@@ -36,8 +36,16 @@ def parse_args() -> argparse.Namespace:
         help="choose what to do. Default to 'generate'.",
     )
     parser.add_argument(
+        "-f",
+        "--file",
+        default=[],
+        type=str,
+        nargs="*",
+        help="choose which files to process.",
+    )
+    parser.add_argument(
         "tp_id",
-        default=get_tp_id(),
+        default=[],
         type=int,
         nargs="*",
         help="choose which tp to process. Default to all.",
@@ -49,7 +57,7 @@ def parse_args() -> argparse.Namespace:
         help="choose python interpreter to use.",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(args=args)
 
     if args.verbose == 0:
         level = os.environ.get("GEPETUTO_LOG_LEVEL", "WARNING")
@@ -92,19 +100,35 @@ def retrieve_python_interpreter():
             return sys.executable
 
 
+def get_file_list(tp_id, file):
+    """Get the list of files we use action on."""
+    file = [Path(f) for f in file]
+    file_list = []
+    if tp_id == []:
+        tp_id = get_tp_id()
+    for n in tp_id:
+        folder = Path(f"tp{n}")
+        if file == []:
+            file_list += folder.glob("*.py")
+        else:
+            file_list += list(filter(lambda f: f in file, folder.glob("*.py")))
+    return file_list
+
+
 def main():
     """Run command."""
     args = parse_args()
+    files = get_file_list(args.tp_id, args.file)
     if args.action == "generate":
         generate(**vars(args))
     elif args.action == "lint":
-        lint(**vars(args))
+        lint(files, **vars(args))
     elif args.action == "test":
-        test(**vars(args))
+        test(files, **vars(args))
     elif args.action == "all":
         LOG.debug("no action specified, running all 3.")
-        lint(**vars(args))
-        test(**vars(args))
+        lint(files, **vars(args))
+        test(files, **vars(args))
         generate(**vars(args))
 
 

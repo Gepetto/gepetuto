@@ -1,14 +1,21 @@
 # Gepetuto
 
+[![PyPI version](https://badge.fury.io/py/gepetuto.svg)](https://pypi.org/project/gepetuto)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/gepetto/gepetuto/main.svg)](https://results.pre-commit.ci/latest/github/gepetto/gepetuto/main)
+[![Tests](https://github.com/gepetto/gepetuto/actions/workflows/tests.yml/badge.svg)](https://github.com/gepetto/gepetuto/actions/workflows/tests.yml)
+[![Release](https://github.com/gepetto/gepetuto/actions/workflows/release.yml/badge.svg)](https://github.com/gepetto/gepetuto/actions/workflows/release.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v1.json)](https://github.com/charliermarsh/ruff)
+
 ## Tutorial edition framework
 
 This project contains some tools to help authoring and maintaing python tutorials presented on notebooks.
 
 ## Install
 
-Until the first release of this package, here is the recommended installation procedure:
+You are strongly encouraged to use a virtual env or similar.
 ```
-pipx install -e .
+python -m pip install gepetuto
 ```
 
 ## Usage
@@ -27,7 +34,7 @@ pipx install -e .
 ## CI Example
 
 example of CI using all gepetuto actions on tests folder here :
-- https://github.com/Gepetto/gepetuto/blob/main/.github/workflows/python-app.yml
+- https://github.com/Gepetto/gepetuto/blob/main/.github/workflows/tests.yml
 
 ## Examples
 

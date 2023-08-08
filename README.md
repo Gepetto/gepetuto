@@ -6,9 +6,9 @@ This project contains some tools to help authoring and maintaing python tutorial
 
 ## Install
 
-Until the first release of this package, here is the recommended installation procedure:
+You are strongly encouraged to use a virtual env or similar.
 ```
-pipx install -e .
+python -m pip install gepetuto
 ```
 
 ## Usage

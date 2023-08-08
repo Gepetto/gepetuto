@@ -16,7 +16,7 @@ homepage = "https://github.com/gepetto/gepetuto"
 license = "BSD-2-Clause"
 name = "gepetuto"
 readme = "README.md"
-version = "0.1.0"
+version = "1.0.0"
 
 [tool.poetry.dependencies]
 black = {extras = ["jupyter"], version = "^23.7.0"}

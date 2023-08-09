@@ -24,4 +24,4 @@ jobs:
     - name: check with gepetuto
       run: cd tests && gepetuto -vva all
     - name: run unit tests
-      run: cd tests && python unit_tests.py
+      run: cd tests && python -m unittest

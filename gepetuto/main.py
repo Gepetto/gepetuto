@@ -108,15 +108,19 @@ def retrieve_python_interpreter():
 def get_file_list(args):
     """Get the list of files we use action on."""
     if args.tp_id == []:
-        get_tp_id()
-    if args.file != []:
-        [Path(f) for f in args.file]
+        tp_id = get_tp_id()
+    else:
+        tp_id = args.tp_id
+    if args.file == []:
+        file = []
+    else:
+        file = [Path(f) for f in args.file]
     file_list = []
-    for n in args.tp_id:
+    for n in tp_id:
         folder = Path(f"tp{n}")
         tp_files = folder.glob("*.py")
-        if args.file != []:
-            tp_files = [f for f in tp_files if f in args.file]
+        if file != []:
+            tp_files = [f for f in tp_files if f in file]
         if args.filter != []:
             tp_files = [
                 f

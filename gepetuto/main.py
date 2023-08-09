@@ -107,10 +107,7 @@ def retrieve_python_interpreter():
 
 def get_file_list(args):
     """Get the list of files we use action on."""
-    if args.tp_id == []:
-        tp_id = get_tp_id()
-    else:
-        tp_id = args.tp_id
+    tp_id = args.tp_id or get_tp_id()
     if args.file == []:
         file = []
     else:

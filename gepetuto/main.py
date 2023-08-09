@@ -41,6 +41,14 @@ def parse_args(args=None) -> argparse.Namespace:
         help="choose which files to process.",
     )
     parser.add_argument(
+        "-F",
+        "--filter",
+        default=[],
+        type=str,
+        nargs="*",
+        help="filter files to process.",
+    )
+    parser.add_argument(
         "tp_id",
         default=[],
         type=int,
@@ -97,26 +105,32 @@ def retrieve_python_interpreter():
             return sys.executable
 
 
-def get_file_list(tp_id, file):
+def get_file_list(args):
     """Get the list of files we use action on."""
-    file = [Path(f) for f in file]
+    if args.tp_id == []:
+        args.tp_id = get_tp_id()
+    if args.file != []:
+        args.file = [Path(f) for f in args.file]
     file_list = []
-    if tp_id == []:
-        tp_id = get_tp_id()
-    for n in tp_id:
+    for n in args.tp_id:
         folder = Path(f"tp{n}")
-        if file == []:
-            file_list += folder.glob("*.py")
-        else:
-            file_list += list(filter(lambda f: f in file, folder.glob("*.py")))
+        tp_files = folder.glob("*.py")
+        if args.file != []:
+            tp_files = [f for f in tp_files if f in args.file]
+        if args.filter != []:
+            tp_files = [
+                f
+                for f in tp_files
+                if any(filter_str in str(f) for filter_str in args.filter)
+            ]
+        file_list += tp_files
     return file_list
 
 
 def main():
     """Run command."""
-    print("here2")
     args = parse_args()
-    files = get_file_list(args.tp_id, args.file)
+    files = get_file_list(args.tp_id, args.file, args.filter)
     if args.action == "generate":
         generate(**vars(args))
     elif args.action == "lint":

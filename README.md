@@ -31,6 +31,10 @@ python -m pip install gepetuto
 8. run `gepetuto -a lint` to ensure the coding standards are respected in all python scripts in tp directories
 9. add `gepetuto -a test` in your CI, and `gepetuto -a lint` + `gepetuto -a generate` in your pre-commit
 
+## Keyboard Customization
+
+You can customize your keyboard shortcuts at Help / Edit Keyboard shortcuts. You will see a list of all the possible actions on jupyter notebook. For each of them, you will see the current shortcuts and a add shortcut space where you can type new shortcuts.
+
 ## CI Example
 
 example of CI using all gepetuto actions on tests folder here :

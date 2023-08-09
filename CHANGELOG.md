@@ -8,6 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - project initialisation
-• add the -F/--filter argument
+- add the -F/--filter argument
 
 [Unreleased]: https://github.com/gepetto/gepetuto

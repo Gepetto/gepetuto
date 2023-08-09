@@ -110,7 +110,7 @@ def get_file_list(args):
     if args.tp_id == []:
         get_tp_id()
     if args.file != []:
-        args.file = [Path(f) for f in args.file]
+        file = [Path(f) for f in args.file]
     file_list = []
     for n in args.tp_id:
         folder = Path(f"tp{n}")

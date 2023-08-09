@@ -11,15 +11,11 @@ def test(files, **kwargs):
     """Test python scripts."""
     python_interpreter = kwargs["python"]
     LOG.info("testing tutorial sources.")
-    tp_id = int(str(files[0])[2])  # get the tp id of the first file
-    check_ipynb(tp_id, python_interpreter)
-    for f in files:
-        LOG.debug(f"Checking {f}")
-        check_call([python_interpreter, f])
-        current_tp_id = int(str(f)[2])
-        if tp_id != current_tp_id:
-            tp_id = current_tp_id
-            check_ipynb(current_tp_id, python_interpreter)
+    for tp_number in files.keys():
+        for tp_file in files[tp_number]:
+            LOG.debug(f"Checking {tp_file}")
+            check_call([python_interpreter, tp_file])
+        check_ipynb(tp_number, python_interpreter)
     LOG.info("test passed.")
 
 

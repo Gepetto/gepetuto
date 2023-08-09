@@ -50,7 +50,7 @@ def parse_args(args=None) -> argparse.Namespace:
     )
     parser.add_argument(
         "tp_id",
-        default=[],
+        default=get_tp_id(),
         type=int,
         nargs="*",
         help="choose which tp to process. Default to all.",
@@ -107,10 +107,9 @@ def retrieve_python_interpreter():
 
 def get_files(args):
     """Get the list of files we use action on."""
-    tp_id = args.tp_id or get_tp_id()
     file = [Path(f) for f in args.file]
     files = {}
-    for n in tp_id:
+    for n in args.tp_id:
         folder = Path(f"tp{n}")
         tp_files = list(folder.glob("*.py"))
         if file != []:

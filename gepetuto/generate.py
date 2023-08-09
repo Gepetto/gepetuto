@@ -20,7 +20,7 @@ def generate(tp_id: List[int], **kwargs):
 def generate_from_id(tp_id: int):
     """Find the corresponding ipynb and folder for a given tp_id."""
     folder = Path() / f"tp{tp_id}"
-    ipynb = next(Path().glob(f"{tp_id}_*.ipynb"))
+    ipynb = next(Path().glob(f"{tp_id}-*.ipynb"))
     generate_ipynb(ipynb, folder)
 
 

@@ -130,7 +130,7 @@ def get_file_list(args):
 def main():
     """Run command."""
     args = parse_args()
-    files = get_file_list(args.tp_id, args.file, args.filter)
+    files = get_file_list(args)
     if args.action == "generate":
         generate(**vars(args))
     elif args.action == "lint":

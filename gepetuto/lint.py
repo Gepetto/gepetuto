@@ -9,8 +9,9 @@ LOG = logging.getLogger("gepetuto.lint")
 def lint(files, **kwargs):
     """Lint python scripts."""
     LOG.info("linting tutorial sources.")
-    for f in files:
-        lint_file(f)
+    for tp_files in files.values():
+        for tp_file in tp_files:
+            lint_file(tp_file)
     LOG.info("lint done.")
 
 

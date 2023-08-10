@@ -1,6 +1,7 @@
 """Add "test" action for the "gepetuto" program."""
 
 import logging
+from collections import defaultdict
 from pathlib import Path
 from subprocess import check_call
 
@@ -11,23 +12,31 @@ def test(files, **kwargs):
     """Test python scripts."""
     python_interpreter = kwargs["python"]
     LOG.info("testing tutorial sources.")
-    tp_id = int(str(files[0])[2])  # get the tp id of the first file
-    check_ipynb(tp_id, python_interpreter)
-    for f in files:
-        LOG.debug(f"Checking {f}")
-        check_call([python_interpreter, f])
-        current_tp_id = int(str(f)[2])
-        if tp_id != current_tp_id:
-            tp_id = current_tp_id
-            check_ipynb(current_tp_id, python_interpreter)
+    for tp_files in files.values():
+        for tp_file in tp_files:
+            LOG.debug(f"Checking {tp_file}")
+            check_call([python_interpreter, tp_file])
+    ipynbs = get_ipynbs()
+    for tp_ipynbs in ipynbs.values():
+        for tp_ipynb in tp_ipynbs:
+            check_ipynb(tp_ipynb, python_interpreter)
     LOG.info("test passed.")
 
 
-def check_ipynb(tp_number, python_interpreter):
+def get_ipynbs():
+    """Get the dictionary of ipynbs to test."""
+    ipynbs = defaultdict(list)
+    for ipynb in Path().glob("*.ipynb"):
+        prefix = str(ipynb).split("-")[0]
+        ipynbs[prefix].append(ipynb)
+    return ipynbs
+
+
+def check_ipynb(ipynb, python_interpreter):
     """Check .ipynb files from given tp_number."""
-    ipynb = next(Path().glob(f"{tp_number}_*.ipynb"))
     check_call(["jupyter", "nbconvert", "--to", "script", f"{ipynb}"])
-    converted_ipynb = next(Path().glob(f"{tp_number}_*.py"))
+    prefix = str(ipynb).split("-")[0]
+    converted_ipynb = next(Path().glob(f"{prefix}-*.py"))
     LOG.debug(f"Checking temporary file {converted_ipynb}")
     check_call([python_interpreter, converted_ipynb])
     Path.unlink(converted_ipynb)

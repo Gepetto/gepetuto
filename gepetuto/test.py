@@ -1,6 +1,7 @@
 """Add "test" action for the "gepetuto" program."""
 
 import logging
+from collections import defaultdict
 from pathlib import Path
 from subprocess import check_call
 
@@ -15,30 +16,18 @@ def test(files, **kwargs):
         for tp_file in tp_files:
             LOG.debug(f"Checking {tp_file}")
             check_call([python_interpreter, tp_file])
-    ipynbs = get_ipynbs(files)
+    ipynbs = get_ipynbs()
     for tp_ipynbs in ipynbs.values():
         for tp_ipynb in tp_ipynbs:
             check_ipynb(tp_ipynb, python_interpreter)
     LOG.info("test passed.")
 
 
-def get_ipynbs(files):
+def get_ipynbs():
     """Get the dictionary of ipynbs to test."""
-    ipynbs = {}
+    ipynbs = defaultdict(list)
     for ipynb in Path().glob("*.ipynb"):
         prefix = str(ipynb).split("-")[0]
-        if prefix.isdecimal():
-            ipynbs = add_value_in_ipynbs(ipynbs, ipynb, prefix)
-        else:
-            ipynbs = add_value_in_ipynbs(ipynbs, ipynb, prefix)
-    return ipynbs
-
-
-def add_value_in_ipynbs(ipynbs, ipynb, prefix):
-    """Add an ipynb file to the dictionary ipynbs."""
-    if prefix not in ipynbs.keys():
-        ipynbs[prefix] = [ipynb]
-    else:
         ipynbs[prefix].append(ipynb)
     return ipynbs
 

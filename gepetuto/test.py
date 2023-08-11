@@ -16,19 +16,23 @@ def test(files, **kwargs):
         for tp_file in tp_files:
             LOG.debug(f"Checking {tp_file}")
             check_call([python_interpreter, tp_file])
-    ipynbs = get_ipynbs()
+    ipynbs = get_ipynbs(files)
     for tp_ipynbs in ipynbs.values():
         for tp_ipynb in tp_ipynbs:
             check_ipynb(tp_ipynb, python_interpreter)
     LOG.info("test passed.")
 
 
-def get_ipynbs():
+def get_ipynbs(files):
     """Get the dictionary of ipynbs to test."""
     ipynbs = defaultdict(list)
     for ipynb in Path().glob("*.ipynb"):
         prefix = str(ipynb).split("-")[0]
-        ipynbs[prefix].append(ipynb)
+        if prefix.isdecimal():
+            if int(prefix) in files.keys():
+                ipynbs[prefix].append(ipynb)
+        else:
+            ipynbs[prefix].append(ipynb)
     return ipynbs
 
 

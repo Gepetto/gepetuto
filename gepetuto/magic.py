@@ -1,5 +1,9 @@
 """Load / reload / hide code snippets from jupyter notebook."""
+import logging
+
 from IPython.core.magic import Magics, line_magic, magics_class
+
+LOG = logging.getLogger("gepetuto.magic")
 
 
 @magics_class
@@ -36,8 +40,11 @@ class DoNotLoadMagics(Magics):
         get_ipython().run_line_magic(magic, line)  # noqa: F821
 
 
-ip = get_ipython()  # noqa: F821
-ip.register_magics(DoNotLoadMagics)
+try:
+    ip = get_ipython()
+    ip.register_magics(DoNotLoadMagics)
+except NameError:
+    LOG.warning("didn't found function get_ipython()")
 
 
 print(

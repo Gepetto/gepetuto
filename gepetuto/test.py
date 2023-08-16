@@ -41,10 +41,7 @@ def get_ipynbs(files):
 def check_ipynb(ipynb, python_interpreter):
     """Check .ipynb files from given tp_number."""
     prefix = str(ipynb).split("-")[0]
-    if prefix.isdecimal():
-        tp_path = Path() / f"tp{prefix}"
-    else:
-        tp_path = Path() / f"{prefix}"
+    tp_path = Path(f"tp{prefix}" if prefix.isdecimal() else prefix)
     if tp_path.exists():
         generate_ipynb(ipynb, tp_path, True)
     check_call(["jupyter", "nbconvert", "--to", "script", f"{ipynb}"])

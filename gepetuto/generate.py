@@ -72,7 +72,7 @@ def generate_ipynb(ipynb, folder, force_load=False):  # noqa: C901
                                 f"# %load {dest}\n",
                                 *content,
                             ]
-                        elif force_load is True and cell["source"][0].endswith(
+                        elif force_load and cell["source"][0].endswith(
                             f"%do_not_load_snippet {dest}",
                         ):
                             data["cells"][cell_number]["source"] = [

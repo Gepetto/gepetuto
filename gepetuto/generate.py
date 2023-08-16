@@ -24,7 +24,7 @@ def generate_from_id(tp_id: int):
     generate_ipynb(ipynb, folder)
 
 
-def generate_ipynb(ipynb, folder):  # noqa: C901
+def generate_ipynb(ipynb, folder, force_load=False):  # noqa: C901
     """Cut python files in bits loadable by ipython."""
     LOG.info("processing '%s' with scripts in '%s'", ipynb, folder)
     with ipynb.open() as f:
@@ -63,6 +63,18 @@ def generate_ipynb(ipynb, folder):  # noqa: C901
                         if len(cell["source"]) == 0:
                             continue
                         if cell["source"][0].endswith(f"%load {dest}"):
+                            data["cells"][cell_number]["source"] = [
+                                f"# %load {dest}\n",
+                                *content,
+                            ]
+                        elif cell["source"][0].endswith(f"%load_snippet {dest}"):
+                            data["cells"][cell_number]["source"] = [
+                                f"# %load {dest}\n",
+                                *content,
+                            ]
+                        elif force_load and cell["source"][0].endswith(
+                            f"%do_not_load_snippet {dest}",
+                        ):
                             data["cells"][cell_number]["source"] = [
                                 f"# %load {dest}\n",
                                 *content,

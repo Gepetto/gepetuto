@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- updated pre-commit hooks
+
 ## [v1.1.0] - 2023-08-16
 
 - add the -F/--filter argument
@@ -15,7 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - allow notebooks starting with something else than a digit
 - test ipynb after generation
 - fix magic.py behavior when outside of ipynb
-- updated pre-commit hooks
 - dependency bumps
 
 ## [v1.0.0] - 2023-08-08

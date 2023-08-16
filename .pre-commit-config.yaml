@@ -1,6 +1,6 @@
 repos:
 - repo: https://github.com/Gepetto/gepetuto
-  rev: v1.0.0
+  rev: v1.1.1
   hooks:
   - id: generate-action
   - id: lint-action

@@ -17,7 +17,7 @@ def lint(files, **kwargs):
 
 def lint_file(file):
     """Lint python script."""
-    LOG.debug(f"Checking {file}")
+    LOG.debug("Checking %s", file)
     check_call(["isort", file])
     check_call(["black", file])
     check_call(["ruff", "--fix", file])

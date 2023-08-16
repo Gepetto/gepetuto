@@ -13,7 +13,7 @@ def generate(tp_id: List[int], **kwargs):
     """Parse python scripts to generate snippets."""
     LOG.info("generating snippets from tutorial sources.")
     for n in tp_id:
-        LOG.debug(f"Looking for tp {n}")
+        LOG.debug("Looking for tp %s", n)
         generate_from_id(n)
 
 
@@ -26,7 +26,7 @@ def generate_from_id(tp_id: int):
 
 def generate_ipynb(ipynb, folder):  # noqa: C901
     """Cut python files in bits loadable by ipython."""
-    LOG.info(f"processing '{ipynb}' with scripts in '{folder}'")
+    LOG.info("processing '%s' with scripts in '%s'", ipynb, folder)
     with ipynb.open() as f:
         data = json.load(f)
     for cell in data["cells"]:
@@ -38,7 +38,7 @@ def generate_ipynb(ipynb, folder):  # noqa: C901
     for generated_file in generated.glob("*"):
         Path.unlink(generated_file)
     for filename in folder.glob("*.py"):
-        LOG.info(f" processing '{filename}'")
+        LOG.info(" processing '%s'", filename)
         content = []
         dest = None
         with filename.open() as f_in:

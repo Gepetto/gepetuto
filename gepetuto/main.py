@@ -61,6 +61,12 @@ def parse_args(args=None) -> argparse.Namespace:
         default=retrieve_python_interpreter(),
         help="choose python interpreter to use.",
     )
+    parser.add_argument(
+        "-c",
+        "--check",
+        action="store_true",
+        help="check if linters change files.",
+    )
 
     args = parser.parse_args(args=args)
 

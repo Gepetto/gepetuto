@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - project initialisation
 - add the -F/--filter argument
 - improve ipynbs detection
+- add the -c/--check argument
 
 [Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.0.0...main
 [v1.0.0]: https://github.com/cmake-wheel/cmeel/releases/tag/v1.0.0

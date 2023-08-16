@@ -50,7 +50,7 @@ def parse_args(args=None) -> argparse.Namespace:
     )
     parser.add_argument(
         "tp_id",
-        default=get_tp_id(),
+        default=[],
         type=int,
         nargs="*",
         help="choose which tp to process. Default to all.",
@@ -67,6 +67,13 @@ def parse_args(args=None) -> argparse.Namespace:
         action="store_true",
         help="check if linters change files.",
     )
+    parser.add_argument(
+        "-C",
+        "--directory",
+        default=".",
+        type=str,
+        help="choose directory to run action on.",
+    )
 
     args = parser.parse_args(args=args)
 
@@ -81,16 +88,16 @@ def parse_args(args=None) -> argparse.Namespace:
     return args
 
 
-def get_tp_id():
+def get_tp_ids(directory):
     """Find tp to process."""
-    tp_id = []
+    tp_ids = []
     current_tp_id = 0
     while True:
-        folder = Path(f"tp{current_tp_id}")
+        folder = Path(directory) / f"tp{current_tp_id}"
         if folder.exists():
-            tp_id.append(current_tp_id)
+            tp_ids.append(current_tp_id)
         elif current_tp_id != 0:
-            return tp_id
+            return tp_ids
         current_tp_id += 1
 
 
@@ -111,12 +118,12 @@ def retrieve_python_interpreter():
             return sys.executable
 
 
-def get_files(args):
+def get_files(args, tp_ids):
     """Get the list of files we use action on."""
     file = [Path(f) for f in args.file]
     files = {}
-    for n in args.tp_id:
-        folder = Path(f"tp{n}")
+    for n in tp_ids:
+        folder = Path(args.directory) / f"tp{n}"
         tp_files = list(folder.glob("*.py"))
         if file != []:
             tp_files = [f for f in tp_files if f in file]
@@ -134,9 +141,10 @@ def get_files(args):
 def main():
     """Run command."""
     args = parse_args()
-    files = get_files(args)
+    tp_ids = get_tp_ids(args.directory) if args.tp_id == [] else args.tp_id
+    files = get_files(args, tp_ids)
     if args.action == "generate":
-        generate(**vars(args))
+        generate(tp_ids, **vars(args))
     elif args.action == "lint":
         lint(files, **vars(args))
     elif args.action == "test":
@@ -145,4 +153,4 @@ def main():
         LOG.debug("no action specified, running all 3.")
         lint(files, **vars(args))
         test(files, **vars(args))
-        generate(**vars(args))
+        generate(tp_ids, **vars(args))

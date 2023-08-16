@@ -9,18 +9,18 @@ LOG = logging.getLogger("gepetuto.generate")
 HASHTAGS = ["jupyter_snippet"]
 
 
-def generate(tp_id: List[int], **kwargs):
+def generate(tp_ids: List[int], **kwargs):
     """Parse python scripts to generate snippets."""
     LOG.info("generating snippets from tutorial sources.")
-    for n in tp_id:
+    for n in tp_ids:
         LOG.debug("Looking for tp %s", n)
-        generate_from_id(n)
+        generate_from_id(n, kwargs["directory"])
 
 
-def generate_from_id(tp_id: int):
+def generate_from_id(tp_id: int, directory):
     """Find the corresponding ipynb and folder for a given tp_id."""
-    folder = Path() / f"tp{tp_id}"
-    ipynb = next(Path().glob(f"{tp_id}-*.ipynb"))
+    folder = Path(directory) / f"tp{tp_id}"
+    ipynb = next(Path(directory).glob(f"{tp_id}-*.ipynb"))
     generate_ipynb(ipynb, folder)
 
 

@@ -23,7 +23,7 @@ python -m pip install gepetuto
 1. create a (eg. `tp1`) directory (`tp0` can be used to check prerequisites)
 2. write python scripts (eg. `example_script.py`) in this directory
 3. delimit snippets inside those scripts between `# %jupyter_snippet example_snippet` and `# %end_jupyter_snippet`
-4. create a (eg. `1_example_notebook.ipynb`) notebook, containing `import gepetuto.magic`
+4. create a (eg. `1-example_notebook.ipynb`) notebook, containing `import gepetuto.magic`
 5. run `gepetuto -a generate`: this will create a `tp{i}/generated` directory with eg. `example_script_example_snippet`
 6. cells can contain either eg. `%load tp1/generated/example_script_example_snippet` to display some code to students,
    or their `%do_not_load` version to let the student write the code themself

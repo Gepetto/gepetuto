@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- add the -F/--filter argument
+- add the -c/--check argument
+- update notebook naming convention with a dash (`-`)
+- allow notebooks starting with something else than a digit
+- test ipynb after generation
+- fix magic.py behavior when outside of ipynb
+- updated pre-commit hooks
+- dependency bumps
+
 ## [v1.0.0] - 2023-08-08
 
 - project initialisation
-- add the -F/--filter argument
-- improve ipynbs detection
-- add the -c/--check argument
 
 [Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.0.0...main
 [v1.0.0]: https://github.com/cmake-wheel/cmeel/releases/tag/v1.0.0

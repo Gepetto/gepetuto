@@ -22,6 +22,6 @@ jobs:
     - name: Install gepetuto and its dependencies
       run: python -m pip install -U pip && python -m pip install .
     - name: check with gepetuto
-      run: cd tests && gepetuto -vva all
+      run: cd tests && gepetuto -vvca all
     - name: run unit tests
       run: cd tests && python -m unittest

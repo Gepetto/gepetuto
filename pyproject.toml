@@ -21,9 +21,9 @@ version = "1.0.0"
 [tool.poetry.dependencies]
 black = {extras = ["jupyter"], version = "^23.7.0"}
 isort = "^5.12.0"
-jupyterlab = "^4.0.4"
+jupyterlab = "^4.0.5"
 python = "^3.8"
-ruff = "^0.0.282"
+ruff = "^0.0.284"
 
 [tool.poetry.scripts]
 gepetuto = "gepetuto.__main__:main"

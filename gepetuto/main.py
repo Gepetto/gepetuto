@@ -104,7 +104,7 @@ def retrieve_python_interpreter():
             check_call(["python", "--version"])
             return "python"
         except FileNotFoundError:
-            LOG.warn(
+            LOG.warning(
                 "Didn't found 'python3' or 'python' executable, using ",
                 sys.executable,
             )

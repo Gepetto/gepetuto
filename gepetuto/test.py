@@ -16,7 +16,7 @@ def test(files, **kwargs):
     LOG.info("testing tutorial sources.")
     for tp_files in files.values():
         for tp_file in tp_files:
-            LOG.debug(f"Checking {tp_file}")
+            LOG.debug("Checking %s", tp_file)
             check_call([python_interpreter, tp_file])
     ipynbs = get_ipynbs(files)
     for tp_ipynbs in ipynbs.values():
@@ -46,6 +46,6 @@ def check_ipynb(ipynb, python_interpreter):
         generate_ipynb(ipynb, tp_path, True)
     check_call(["jupyter", "nbconvert", "--to", "script", f"{ipynb}"])
     converted_ipynb = next(Path().glob(f"{prefix}-*.py"))
-    LOG.debug(f"Checking temporary file {converted_ipynb}")
+    LOG.debug("Checking temporary file %s", converted_ipynb)
     check_call([python_interpreter, converted_ipynb])
     Path.unlink(converted_ipynb)

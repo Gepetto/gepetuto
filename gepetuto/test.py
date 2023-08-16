@@ -5,6 +5,8 @@ from collections import defaultdict
 from pathlib import Path
 from subprocess import check_call
 
+from .generate import generate_ipynb
+
 LOG = logging.getLogger("gepetuto.test")
 
 
@@ -38,8 +40,11 @@ def get_ipynbs(files):
 
 def check_ipynb(ipynb, python_interpreter):
     """Check .ipynb files from given tp_number."""
-    check_call(["jupyter", "nbconvert", "--to", "script", f"{ipynb}"])
     prefix = str(ipynb).split("-")[0]
+    tp_path = Path(f"tp{prefix}" if prefix.isdecimal() else prefix)
+    if tp_path.exists():
+        generate_ipynb(ipynb, tp_path, True)
+    check_call(["jupyter", "nbconvert", "--to", "script", f"{ipynb}"])
     converted_ipynb = next(Path().glob(f"{prefix}-*.py"))
     LOG.debug(f"Checking temporary file {converted_ipynb}")
     check_call([python_interpreter, converted_ipynb])

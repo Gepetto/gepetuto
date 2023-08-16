@@ -1,4 +1,10 @@
 repos:
+- repo: https://github.com/Gepetto/gepetuto
+  rev: v1.0.0
+  hooks:
+  - id: generate-action
+  - id: lint-action
+  - id: test-action
 - repo: https://github.com/PyCQA/isort
   rev: 5.12.0
   hooks:

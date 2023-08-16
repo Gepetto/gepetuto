@@ -1,15 +1,15 @@
 - id: generate-action
   name: generate-action
-  entry: gepetuto -a generate
+  entry: gepetuto -a generate -f
   language: python
   description: Add snippet code in generated folder, add them in .ipynb file if written to load them.
 - id: lint-action
   name: lint-action
-  entry: gepetuto -a lint
+  entry: gepetuto -a lint -f
   language: python
   description: Prevent from linting errors.
 - id: test-action
   name: test-action
-  entry: gepetuto -a test
+  entry: gepetuto -a test -f
   language: python
   description: Prevent from errors in python scripts.

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.2.0] - 2023-08-17
+
 - add directory argument
 
 ## [v1.1.1] - 2023-08-16
@@ -27,7 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - project initialisation
 
-[Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.1.1...main
+[Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.2.0...main
+[v1.2.0]: https://github.com/cmake-wheel/cmeel/compare/v1.1.1...v1.2.0
 [v1.1.1]: https://github.com/cmake-wheel/cmeel/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/cmake-wheel/cmeel/compare/v1.0.0...v1.1.0
 [v1.0.0]: https://github.com/cmake-wheel/cmeel/releases/tag/v1.0.0

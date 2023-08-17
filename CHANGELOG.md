@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- add directory argument
+
 ## [v1.1.1] - 2023-08-16
 
 - updated pre-commit hooks

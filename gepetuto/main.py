@@ -67,6 +67,13 @@ def parse_args(args=None) -> argparse.Namespace:
         action="store_true",
         help="check if linters change files.",
     )
+    parser.add_argument(
+        "-C",
+        "--directory",
+        default=".",
+        type=str,
+        help="choose directory to run action on.",
+    )
 
     args = parser.parse_args(args=args)
 
@@ -133,6 +140,8 @@ def get_files(args):
 
 def main():
     """Run command."""
+    args = parse_args()
+    os.chdir(args.directory)
     args = parse_args()
     files = get_files(args)
     if args.action == "generate":

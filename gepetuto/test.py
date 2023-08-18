@@ -19,7 +19,7 @@ def test(files, **kwargs):
         for tp_file in tp_files:
             LOG.debug("Checking %s", tp_file)
             check_call([python_interpreter, str(tp_file)])
-    tmp_dir = tempfile.TemporaryDirectory()
+    tmp_dir = tempfile.TemporaryDirectory(prefix="gepetuto-")
     ipynbs = get_ipynbs(files)
     for tp_ipynbs in ipynbs.values():
         for tp_ipynb in tp_ipynbs:

@@ -45,7 +45,7 @@ def check_ipynb(ipynb, python_interpreter, tmp_dir):
     prefix = str(ipynb).split("-")[0]
     tp_path = Path(f"tp{prefix}" if prefix.isdecimal() else prefix)
     check_call(["cp", f"{ipynb}", tmp_dir.name])
-    ipynb_copy = next(Path(tmp_dir.name).glob(f"{prefix}-*.ipynb"))
+    ipynb_copy = Path(tmp_dir.name) / ipynb.name
     if tp_path.exists():
         generate_ipynb(ipynb_copy, tp_path, True)
     check_call(["jupyter", "nbconvert", "--to", "script", ipynb_copy])

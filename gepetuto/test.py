@@ -49,6 +49,6 @@ def check_ipynb(ipynb, python_interpreter, tmp_dir):
     if tp_path.exists():
         generate_ipynb(ipynb_copy, tp_path, True)
     check_call(["jupyter", "nbconvert", "--to", "script", ipynb_copy])
-    converted_ipynb = next(Path(tmp_dir.name).glob(f"{prefix}-*.py"))
+    converted_ipynb = Path(tmp_dir.name) / f"{ipynb_copy.stem}.py"
     LOG.debug("Checking temporary file %s", converted_ipynb)
     check_call([python_interpreter, converted_ipynb])

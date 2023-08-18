@@ -1,6 +1,7 @@
 """Add "test" action for the "gepetuto" program."""
 
 import logging
+import tempfile
 from collections import defaultdict
 from pathlib import Path
 from subprocess import check_call
@@ -18,10 +19,11 @@ def test(files, **kwargs):
         for tp_file in tp_files:
             LOG.debug("Checking %s", tp_file)
             check_call([python_interpreter, str(tp_file)])
+    tmp_dir = tempfile.TemporaryDirectory()
     ipynbs = get_ipynbs(files)
     for tp_ipynbs in ipynbs.values():
         for tp_ipynb in tp_ipynbs:
-            check_ipynb(tp_ipynb, python_interpreter)
+            check_ipynb(tp_ipynb, python_interpreter, tmp_dir)
     LOG.info("test passed.")
 
 
@@ -38,14 +40,15 @@ def get_ipynbs(files):
     return ipynbs
 
 
-def check_ipynb(ipynb, python_interpreter):
+def check_ipynb(ipynb, python_interpreter, tmp_dir):
     """Check .ipynb files from given tp_number."""
     prefix = str(ipynb).split("-")[0]
     tp_path = Path(f"tp{prefix}" if prefix.isdecimal() else prefix)
+    check_call(["cp", f"{ipynb}", tmp_dir.name])
+    ipynb_copy = next(Path(tmp_dir.name).glob(f"{prefix}-*.ipynb"))
     if tp_path.exists():
-        generate_ipynb(ipynb, tp_path, True)
-    check_call(["jupyter", "nbconvert", "--to", "script", f"{ipynb}"])
-    converted_ipynb = next(Path().glob(f"{prefix}-*.py"))
+        generate_ipynb(ipynb_copy, tp_path, True)
+    check_call(["jupyter", "nbconvert", "--to", "script", ipynb_copy])
+    converted_ipynb = next(Path(tmp_dir.name).glob(f"{prefix}-*.py"))
     LOG.debug("Checking temporary file %s", converted_ipynb)
     check_call([python_interpreter, converted_ipynb])
-    Path.unlink(converted_ipynb)

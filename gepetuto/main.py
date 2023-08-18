@@ -4,6 +4,7 @@ import argparse
 import logging
 import os
 import sys
+from importlib.metadata import metadata
 from pathlib import Path
 from subprocess import check_call
 
@@ -73,6 +74,11 @@ def parse_args(args=None) -> argparse.Namespace:
         default="",
         help="choose directory to run action on.",
     )
+    parser.add_argument(
+        "--version",
+        action="store_true",
+        help="Get gepetuto version.",
+    )
 
     args = parser.parse_args(args=args)
 
@@ -137,12 +143,23 @@ def get_files(args):
     return files
 
 
+def show_version():
+    """Print gepetuto version."""
+    __metadata__ = metadata("gepetuto")
+    __version__ = __metadata__["version"]
+    print("gepetuto ", __version__)
+
+
 def main():
     """Run command."""
     args = parse_args()
+    if args.version:
+        show_version()
+        return
     if args.directory:
         os.chdir(args.directory)
         args = parse_args()
+
     files = get_files(args)
     if args.action == "generate":
         generate(**vars(args))

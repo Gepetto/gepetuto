@@ -25,6 +25,9 @@ jupyterlab = "^4.0.5"
 python = "^3.8"
 ruff = "^0.0.284"
 
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
+
 [tool.poetry.scripts]
 gepetuto = "gepetuto.__main__:main"
 

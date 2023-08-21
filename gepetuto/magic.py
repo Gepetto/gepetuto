@@ -10,12 +10,12 @@ LOG = logging.getLogger("gepetuto.magic")
 class DoNotLoadMagics(Magics):
     """Define a magic ipython command to help loading (or hiding) code snippets."""
 
-    force_load = False
+    force_loading = False
 
     @line_magic
     def do_not_load_snippet(self, line):
         """Magic command to hide the snippet and let the student code by themself."""
-        if DoNotLoadMagics.force_load:
+        if DoNotLoadMagics.force_loading:
             self.run("run", "-i " + line)
             self.run("load", line)
 
@@ -23,10 +23,10 @@ class DoNotLoadMagics(Magics):
     def force_load(self, line):
         """Help the author to easily display even "do_not_load" snippets."""
         if line == "" or line == "on" or line == "True" or line == "1":
-            DoNotLoadMagics.force_load = True
+            DoNotLoadMagics.force_loading = True
             print("Force load in ON")
         else:
-            DoNotLoadMagics.force_load = False
+            DoNotLoadMagics.force_loading = False
             print("Force load is OFF")
 
     @line_magic
@@ -41,7 +41,7 @@ class DoNotLoadMagics(Magics):
 
 
 try:
-    ip = get_ipython()
+    ip = get_ipython()  # type: ignore
     ip.register_magics(DoNotLoadMagics)
 except NameError:
     LOG.warning("didn't found function get_ipython()")

@@ -6,13 +6,14 @@ import tempfile
 from collections import defaultdict
 from pathlib import Path
 from subprocess import check_call
+from typing import Any, DefaultDict, Dict, List
 
 from .generate import generate_ipynb
 
 LOG = logging.getLogger("gepetuto.test")
 
 
-def test(files, **kwargs):
+def test(files: Dict[int, List[Path]], **kwargs):
     """Test python scripts."""
     python_interpreter = kwargs["python"]
     LOG.info("testing tutorial sources.")
@@ -28,7 +29,7 @@ def test(files, **kwargs):
     LOG.info("test passed.")
 
 
-def get_ipynbs(files):
+def get_ipynbs(files: Dict[int, List[Path]]) -> DefaultDict[Any, List[Path]]:
     """Get the dictionary of ipynbs to test."""
     ipynbs = defaultdict(list)
     for ipynb in Path().glob("*.ipynb"):
@@ -41,7 +42,7 @@ def get_ipynbs(files):
     return ipynbs
 
 
-def check_ipynb(ipynb, python_interpreter, tmp_dir):
+def check_ipynb(ipynb: Path, python_interpreter, tmp_dir):
     """Check .ipynb files from given tp_number."""
     prefix = str(ipynb).split("-")[0]
     tp_path = Path(f"tp{prefix}" if prefix.isdecimal() else prefix)

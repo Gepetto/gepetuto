@@ -1,12 +1,14 @@
 """Add "lint" action for the "gepetuto" program."""
 
 import logging
+from pathlib import Path
 from subprocess import check_call
+from typing import Dict, List
 
 LOG = logging.getLogger("gepetuto.lint")
 
 
-def lint(files, **kwargs):
+def lint(files: Dict[int, List[Path]], **kwargs):
     """Lint python scripts."""
     LOG.info("linting tutorial sources.")
     for tp_files in files.values():
@@ -15,7 +17,7 @@ def lint(files, **kwargs):
     LOG.info("lint done.")
 
 
-def lint_file(file, check):
+def lint_file(file: Path, check):
     """Lint python script."""
     LOG.debug("Checking %s", file)
     if check:

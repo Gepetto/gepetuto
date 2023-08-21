@@ -45,7 +45,6 @@ def check_ipynb(ipynb, python_interpreter, tmp_dir):
     """Check .ipynb files from given tp_number."""
     prefix = str(ipynb).split("-")[0]
     tp_path = Path(f"tp{prefix}" if prefix.isdecimal() else prefix)
-    check_call(["cp", f"{ipynb}", tmp_dir.name])
     shutil.copy(ipynb, tmp_dir.name)
     ipynb_copy = Path(tmp_dir.name) / ipynb.name
     if tp_path.exists():

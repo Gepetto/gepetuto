@@ -20,8 +20,8 @@ def generate(tp_id: List[int], **kwargs):
 def generate_from_id(tp_id: int):
     """Find the corresponding ipynb and folder for a given tp_id."""
     folder = Path() / f"tp{tp_id}"
-    ipynb = next(Path().glob(f"{tp_id}-*.ipynb"))
-    generate_ipynb(ipynb, folder)
+    for ipynb in Path().glob(f"{tp_id}-*.ipynb"):
+        generate_ipynb(ipynb, folder)
 
 
 def generate_ipynb(ipynb, folder, force_load=False):  # noqa: C901
@@ -58,7 +58,7 @@ def generate_ipynb(ipynb, folder, force_load=False):  # noqa: C901
                         )
                         raise SyntaxError(msg)
                     with dest.open("w") as f_out:
-                        f_out.write("".join(content))
+                        f_out.write("".join(content).strip() + "\n")
                     for cell_number, cell in enumerate(cells_copy):
                         if len(cell["source"]) == 0:
                             continue
@@ -87,4 +87,5 @@ def generate_ipynb(ipynb, folder, force_load=False):  # noqa: C901
                 elif dest is not None:
                     content.append(line)
     with ipynb.open("w") as f:
-        f.write(json.dumps(data, indent=1))
+        json.dump(data, f, indent=1)
+        f.write("\n")

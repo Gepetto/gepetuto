@@ -30,6 +30,7 @@ def test(files: Dict[int, List[Path]], **kwargs):
 
 
 def get_ipynbs(files: Dict[int, List[Path]]) -> DefaultDict[Any, List[Path]]:
+    # FIXME: this Any should be an union
     """Get the dictionary of ipynbs to test."""
     ipynbs = defaultdict(list)
     for ipynb in Path().glob("*.ipynb"):

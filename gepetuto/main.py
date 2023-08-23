@@ -17,7 +17,10 @@ LOG = logging.getLogger("gepetuto")
 
 def parse_args(args=None) -> argparse.Namespace:
     """Check what the user want."""
-    parser = argparse.ArgumentParser(prog="gepetuto", description="gepetuto tools")
+    parser = argparse.ArgumentParser(
+        prog="gepetuto",
+        description="Tutorial edition framework",
+    )
     parser.add_argument(
         "-v",
         "--verbose",

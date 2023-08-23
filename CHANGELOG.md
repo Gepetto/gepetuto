@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v1.3.0] - 2023-08-23
+
 - add version argument
 - fix end of generated files
 - fix generate for multiple ipynb with same prefix
@@ -35,7 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - project initialisation
 
-[Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.2.0...main
+[Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.3.0...main
+[v1.3.0]: https://github.com/cmake-wheel/cmeel/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/cmake-wheel/cmeel/compare/v1.1.1...v1.2.0
 [v1.1.1]: https://github.com/cmake-wheel/cmeel/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/cmake-wheel/cmeel/compare/v1.0.0...v1.1.0

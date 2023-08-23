@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - add version argument
+- fix end of generated files
+- fix generate for multiple ipynb with same prefix
+- add type hints checks in CI
+- update some type hints
 
 ## [v1.2.0] - 2023-08-17
 

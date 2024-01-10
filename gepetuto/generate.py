@@ -32,6 +32,8 @@ def generate_ipynb(ipynb, folder, force_load=False):  # noqa: C901
     for cell in data["cells"]:
         if "outputs" in cell:
             cell["outputs"] = []
+        if "execution_count" in cell:
+            cell["execution_count"] = None
     cells_copy = data["cells"].copy()
     generated = folder / "generated"
     generated.mkdir(exist_ok=True)

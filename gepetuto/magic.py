@@ -1,4 +1,5 @@
 """Load / reload / hide code snippets from jupyter notebook."""
+
 import logging
 
 from IPython.core.magic import Magics, line_magic, magics_class

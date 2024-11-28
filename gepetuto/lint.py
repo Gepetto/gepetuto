@@ -23,8 +23,8 @@ def lint_file(file: Path, check):
     if check:
         check_call(["isort", file, "--check"])
         check_call(["black", file, "--check"])
-        check_call(["ruff", "--fix", file, "--exit-non-zero-on-fix"])
+        check_call(["ruff", "check", "--fix", file, "--exit-non-zero-on-fix"])
     else:
         check_call(["isort", file])
         check_call(["black", file])
-        check_call(["ruff", "--fix", file])
+        check_call(["ruff", "check", "--fix", file])

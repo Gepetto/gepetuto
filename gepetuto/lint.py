@@ -21,7 +21,7 @@ def lint_file(file: Path, check):
     """Lint python script."""
     LOG.debug("Checking %s", file)
     check_call(
-        ["ruff", "check", "--fix", file]
+        ["ruff", "check", "--fix", f"{file}"]
         + (["--exit-non-zero-on-fix"] if check else []),
     )
-    check_call(["ruff", "format", file])
+    check_call(["ruff", "format", f"{file}"])

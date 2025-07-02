@@ -67,7 +67,7 @@ example of CI using all gepetuto actions on tests folder here :
 
 ```
 - repo: https://github.com/Gepetto/gepetuto
-  rev: v2.0.1
+  rev: v2.0.2
   hooks:
   - id: generate-action
   - id: lint-action

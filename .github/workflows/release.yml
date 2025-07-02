@@ -9,6 +9,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     environment: release
+    permissions:
+      id-token: write
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5

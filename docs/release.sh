@@ -8,7 +8,7 @@ OLD=$(uv version --short)
 
 uv version "$@"
 
-NEW=$(poetry version -s)
+NEW=$(uv version --short)
 DATE=$(date +%Y-%m-%d)
 
 sed -i "/^## \[Unreleased\]/a \\\n## [v$NEW] - $DATE" CHANGELOG.md

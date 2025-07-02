@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - :warning: require python >= 3.10
 - `generate` also clear cells execution count
+- switch from `poetry` to `uv`
 - update dependencies
 
 ## [v1.3.0] - 2023-08-23
@@ -42,8 +43,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - project initialisation
 
 [Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.3.0...main
-[v1.3.0]: https://github.com/cmake-wheel/cmeel/compare/v1.2.0...v1.3.0
-[v1.2.0]: https://github.com/cmake-wheel/cmeel/compare/v1.1.1...v1.2.0
-[v1.1.1]: https://github.com/cmake-wheel/cmeel/compare/v1.1.0...v1.1.1
-[v1.1.0]: https://github.com/cmake-wheel/cmeel/compare/v1.0.0...v1.1.0
-[v1.0.0]: https://github.com/cmake-wheel/cmeel/releases/tag/v1.0.0
+[v1.3.0]: https://github.com/gepetto/gepetuto/compare/v1.2.0...v1.3.0
+[v1.2.0]: https://github.com/gepetto/gepetuto/compare/v1.1.1...v1.2.0
+[v1.1.1]: https://github.com/gepetto/gepetuto/compare/v1.1.0...v1.1.1
+[v1.1.0]: https://github.com/gepetto/gepetuto/compare/v1.0.0...v1.1.0
+[v1.0.0]: https://github.com/gepetto/gepetuto/releases/tag/v1.0.0

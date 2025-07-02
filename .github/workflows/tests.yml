@@ -13,20 +13,16 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.13
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.13"
-    - name: Install gepetuto and its dependencies
-      run: pipx install poetry && poetry install --with dev
-    - name: check with gepetuto
-      run: poetry run gepetuto -vvca all -C tests
-    - name: run unit tests
-      run: cd tests && poetry run python -m unittest
-    - name: run mypy
-      run: poetry run mypy --explicit-package-bases tests gepetuto
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: check with gepetuto
+        run: uv run gepetuto -vvca all -C tests
+      - name: run unit tests
+        run: cd tests && uv run python -m unittest
+      - name: run mypy
+        run: uv run mypy --explicit-package-bases tests gepetuto

@@ -5,8 +5,8 @@
 [![Tests](https://github.com/gepetto/gepetuto/actions/workflows/tests.yml/badge.svg)](https://github.com/gepetto/gepetuto/actions/workflows/tests.yml)
 [![Release](https://github.com/gepetto/gepetuto/actions/workflows/release.yml/badge.svg)](https://github.com/gepetto/gepetuto/actions/workflows/release.yml)
 
-[![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v1.json)](https://github.com/charliermarsh/ruff)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 
 ## Tutorial edition framework
 

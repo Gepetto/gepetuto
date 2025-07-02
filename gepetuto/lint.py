@@ -3,12 +3,11 @@
 import logging
 from pathlib import Path
 from subprocess import check_call
-from typing import Dict, List
 
 LOG = logging.getLogger("gepetuto.lint")
 
 
-def lint(files: Dict[int, List[Path]], **kwargs):
+def lint(files: dict[int, list[Path]], **kwargs):
     """Lint python scripts."""
     LOG.info("linting tutorial sources.")
     for tp_files in files.values():

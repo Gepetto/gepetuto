@@ -4,16 +4,16 @@
 [[ $(basename "$PWD") == docs ]] && cd ..
 
 
-OLD=$(poetry version -s)
+OLD=$(uv version --short)
 
-poetry version "$1"
+uv version "$@"
 
 NEW=$(poetry version -s)
 DATE=$(date +%Y-%m-%d)
 
 sed -i "/^## \[Unreleased\]/a \\\n## [v$NEW] - $DATE" CHANGELOG.md
 sed -i "/^\[Unreleased\]/s/$OLD/$NEW/" CHANGELOG.md
-sed -i "/^\[Unreleased\]/a [v$NEW]: https://github.com/cmake-wheel/cmeel/compare/v$OLD...v$NEW" CHANGELOG.md
+sed -i "/^\[Unreleased\]/a [v$NEW]: https://github.com/gepetto/gepetuto/compare/v$OLD...v$NEW" CHANGELOG.md
 sed -i "/rev/s/$OLD/$NEW/" README.md
 
 git add pyproject.toml CHANGELOG.md README.md

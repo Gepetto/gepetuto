@@ -16,7 +16,7 @@ sed -i "/^\[Unreleased\]/s/$OLD/$NEW/" CHANGELOG.md
 sed -i "/^\[Unreleased\]/a [v$NEW]: https://github.com/gepetto/gepetuto/compare/v$OLD...v$NEW" CHANGELOG.md
 sed -i "/rev/s/$OLD/$NEW/" README.md
 
-git add pyproject.toml CHANGELOG.md README.md
+git add pyproject.toml CHANGELOG.md README.md uv.lock
 git commit -m "Release v$NEW"
 git tag -s "v$NEW" -m "Release v$NEW"
 git push

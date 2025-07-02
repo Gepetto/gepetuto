@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - :warning: require python >= 3.10
 - `generate` also clear cells execution count
 - switch from `poetry` to `uv`
+- verbosity: add `-q`/`--quiet`, follow `QUIET`/`VERBOSITY`, and no longer `GEPETUTO_LOG_LEVEL`
 - update dependencies
 
 ## [v1.3.0] - 2023-08-23

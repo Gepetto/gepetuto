@@ -33,27 +33,27 @@ Add `gepetuto` in your pip / PyPI dependencies
 
 ```
 $ gepetuto -h
-usage: gepetuto [-h] [-v] [-a [{lint,test,generate,all}]] [-f [FILE [FILE ...]]] [-F [FILTER [FILTER ...]]]
-                [-p PYTHON] [-c] [-C DIRECTORY] [--version] [tp_id [tp_id ...]]
+usage: gepetuto [-h] [-q] [-v] [-a [{lint,test,generate,all}]] [-f [FILE ...]] [-F [FILTER ...]]
+                [-p PYTHON] [-c] [-C DIRECTORY] [--version] [tp_id ...]
 
 Tutorial edition framework
 
 positional arguments:
   tp_id                 choose which tp to process. Default to all.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
+  -q, --quiet           decrement verbosity level
   -v, --verbose         increment verbosity level
-  -a [{lint,test,generate,all}], --action [{lint,test,generate,all}]
+  -a, --action [{lint,test,generate,all}]
                         choose what to do. Default to 'generate'.
-  -f [FILE [FILE ...]], --file [FILE [FILE ...]]
+  -f, --file [FILE ...]
                         choose which files to process.
-  -F [FILTER [FILTER ...]], --filter [FILTER [FILTER ...]]
+  -F, --filter [FILTER ...]
                         filter files to process.
-  -p PYTHON, --python PYTHON
-                        choose python interpreter to use.
+  -p, --python PYTHON   choose python interpreter to use.
   -c, --check           check if linters change files.
-  -C DIRECTORY, --directory DIRECTORY
+  -C, --directory DIRECTORY
                         choose directory to run action on.
   --version             Get gepetuto version.
 ```

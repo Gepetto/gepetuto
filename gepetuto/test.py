@@ -6,14 +6,14 @@ import tempfile
 from collections import defaultdict
 from pathlib import Path
 from subprocess import check_call
-from typing import Any, DefaultDict, Dict, List
+from typing import Any
 
 from .generate import generate_ipynb
 
 LOG = logging.getLogger("gepetuto.test")
 
 
-def test(files: Dict[int, List[Path]], **kwargs):
+def test(files: dict[int, list[Path]], **kwargs):
     """Test python scripts."""
     python_interpreter = kwargs["python"]
     LOG.info("testing tutorial sources.")
@@ -29,7 +29,7 @@ def test(files: Dict[int, List[Path]], **kwargs):
     LOG.info("test passed.")
 
 
-def get_ipynbs(files: Dict[int, List[Path]]) -> DefaultDict[Any, List[Path]]:
+def get_ipynbs(files: dict[int, list[Path]]) -> defaultdict[Any, list[Path]]:
     # FIXME: this Any should be an union
     """Get the dictionary of ipynbs to test."""
     ipynbs = defaultdict(list)

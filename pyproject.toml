@@ -33,9 +33,11 @@ gepetuto = "gepetuto.__main__:main"
 changelog = "https://github.com/gepetto/gepetuto/blob/main/CHANGELOG.md"
 
 [tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
 extend-ignore = ["D203", "D213"]
 extend-select = ["A", "B", "C", "COM", "D", "EM", "EXE", "G", "N", "PTH", "RET", "RUF", "UP", "W", "YTT"]
-target-version = "py310"
 
 [tool.tomlsort]
 all = true

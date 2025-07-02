@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v2.0.0] - 2025-07-02
+
 - :warning: require python >= 3.10
 - `generate` also clear cells execution count
 - switch from `poetry` to `uv`
@@ -43,7 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - project initialisation
 
-[Unreleased]: https://github.com/gepetto/gepetuto/compare/v1.3.0...main
+[Unreleased]: https://github.com/gepetto/gepetuto/compare/v2.0.0...main
+[v2.0.0]: https://github.com/gepetto/gepetuto/compare/v1.3.0...v2.0.0
 [v1.3.0]: https://github.com/gepetto/gepetuto/compare/v1.2.0...v1.3.0
 [v1.2.0]: https://github.com/gepetto/gepetuto/compare/v1.1.1...v1.2.0
 [v1.1.1]: https://github.com/gepetto/gepetuto/compare/v1.1.0...v1.1.1

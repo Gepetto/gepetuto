@@ -36,7 +36,7 @@ def get_ipynbs(files: dict[int, list[Path]]) -> defaultdict[Any, list[Path]]:
     for ipynb in Path().glob("*.ipynb"):
         prefix = str(ipynb).split("-")[0]
         if prefix.isdecimal():
-            if int(prefix) in files.keys():
+            if int(prefix) in files:
                 ipynbs[prefix].append(ipynb)
         else:
             ipynbs[prefix].append(ipynb)

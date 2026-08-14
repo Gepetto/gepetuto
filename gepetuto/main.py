@@ -25,7 +25,7 @@ def parse_args(args=None) -> argparse.Namespace:
         "-q",
         "--quiet",
         action="count",
-        default=int(os.environ.get("QUIET", 0)),
+        default=int(os.environ.get("QUIET", "0")),
         help="decrement verbosity level",
     )
 
@@ -33,7 +33,7 @@ def parse_args(args=None) -> argparse.Namespace:
         "-v",
         "--verbose",
         action="count",
-        default=int(os.environ.get("VERBOSITY", 0)),
+        default=int(os.environ.get("VERBOSITY", "0")),
         help="increment verbosity level",
     )
     parser.add_argument(
@@ -124,7 +124,7 @@ def retrieve_python_interpreter():
             return "python"
         except FileNotFoundError:
             LOG.warning(
-                "Didn't found 'python3' or 'python' executable, using ",
+                "Didn't found 'python3' or 'python' executable, using %s",
                 sys.executable,
             )
             return sys.executable

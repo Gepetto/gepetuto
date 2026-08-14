@@ -63,19 +63,9 @@ def generate_ipynb(ipynb, folder, force_load=False):  # noqa: C901
                     for cell_number, cell in enumerate(cells_copy):
                         if len(cell["source"]) == 0:
                             continue
-                        if cell["source"][0].endswith(f"%load {dest}"):
-                            data["cells"][cell_number]["source"] = [
-                                f"# %load {dest}\n",
-                                *content,
-                            ]
-                        elif cell["source"][0].endswith(f"%load_snippet {dest}"):
-                            data["cells"][cell_number]["source"] = [
-                                f"# %load {dest}\n",
-                                *content,
-                            ]
-                        elif force_load and cell["source"][0].endswith(
+                        if cell["source"][0].endswith(f"%load {dest}") or cell["source"][0].endswith(f"%load_snippet {dest}") or (force_load and cell["source"][0].endswith(
                             f"%do_not_load_snippet {dest}",
-                        ):
+                        )):
                             data["cells"][cell_number]["source"] = [
                                 f"# %load {dest}\n",
                                 *content,

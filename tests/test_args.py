@@ -24,7 +24,7 @@ class TestGepetutoArguments(unittest.TestCase):
         file_list = get_files(arguments)
         self.assertTrue(Path("tp1/cholesky.py") in file_list[1])
         self.assertTrue(Path("tp1/example_script.py") in file_list[1])
-        self.assertTrue(2 not in file_list.keys())
+        self.assertTrue(2 not in file_list)
 
     def test_file_cholesky(self):
         """Check files we work on when we specify a file with --file."""
@@ -32,7 +32,7 @@ class TestGepetutoArguments(unittest.TestCase):
         file_list = get_files(arguments)
         self.assertTrue(Path("tp1/cholesky.py") in file_list[1])
         self.assertTrue(Path("tp1/example_script.py") not in file_list[1])
-        self.assertTrue(2 not in file_list.keys())
+        self.assertTrue(2 not in file_list)
 
     def test_tp_id_1_file_cholesky(self):
         """Check files we work on when we specify tp_id = 1 and a file in tp1 folder."""
@@ -40,14 +40,14 @@ class TestGepetutoArguments(unittest.TestCase):
         file_list = get_files(arguments)
         self.assertTrue(Path("tp1/cholesky.py") in file_list[1])
         self.assertTrue(Path("tp1/example_script.py") not in file_list[1])
-        self.assertTrue(2 not in file_list.keys())
+        self.assertTrue(2 not in file_list)
 
     def test_no_file_matching(self):
         """Check files we work on when tp_id and --file has no files in common."""
         arguments = parse_args(["2", "--file", "tp1/cholesky.py"])
         file_list = get_files(arguments)
-        self.assertTrue(1 not in file_list.keys())
-        self.assertTrue(2 not in file_list.keys())
+        self.assertTrue(1 not in file_list)
+        self.assertTrue(2 not in file_list)
 
     def test_filter_cholesky(self):
         """Check files we work on with --filter cholesky argument."""
@@ -64,7 +64,7 @@ class TestGepetutoArguments(unittest.TestCase):
         file_list = get_files(arguments)
         self.assertTrue(Path("tp1/cholesky.py") in file_list[1])
         self.assertTrue(Path("tp1/example_script.py") not in file_list[1])
-        self.assertTrue(2 not in file_list.keys())
+        self.assertTrue(2 not in file_list)
 
     def test_file_cholesky_filter_cholesky(self):
         """Check files we work on with --filter cholesky and --file on cholesky file."""
@@ -72,7 +72,7 @@ class TestGepetutoArguments(unittest.TestCase):
         file_list = get_files(arguments)
         self.assertTrue(Path("tp1/cholesky.py") in file_list[1])
         self.assertTrue(Path("tp1/example_script.py") not in file_list[1])
-        self.assertTrue(2 not in file_list.keys())
+        self.assertTrue(2 not in file_list)
 
     def test_no_file_matching_2(self):
         """Check files we work on when --file and --filter has no files in common."""
@@ -80,8 +80,8 @@ class TestGepetutoArguments(unittest.TestCase):
             ["--file", "tp1/example_script.py", "--filter", "cholesky"],
         )
         file_list = get_files(arguments)
-        self.assertTrue(1 not in file_list.keys())
-        self.assertTrue(2 not in file_list.keys())
+        self.assertTrue(1 not in file_list)
+        self.assertTrue(2 not in file_list)
 
 
 if __name__ == "__main__":

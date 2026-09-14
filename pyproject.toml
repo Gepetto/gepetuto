@@ -9,9 +9,9 @@ dev = [
 
 [project]
 authors = [
-  {email = "guilhem.saurel@laas.fr", name = "Guilhem Saurel"},
-  {email = "nmansard@laas.fr", name = "Nicolas Mansard"},
-  {email = "tmartinez@laas.fr", name = "Théo Martinez"}
+  { email = "guilhem.saurel@laas.fr", name = "Guilhem Saurel" },
+  { email = "nmansard@laas.fr", name = "Nicolas Mansard" },
+  { email = "tmartinez@laas.fr", name = "Théo Martinez" }
 ]
 dependencies = [
   "jupyterlab>=4.4.4",
